@@ -547,7 +547,7 @@ class ZygoteServer {
                         try {
                             ZygoteConnection connection = peers.get(pollIndex);
                             boolean multipleForksOK = !isUsapPoolEnabled()
-                                    && ZygoteHooks.isIndefiniteThreadSuspensionSafe();
+                                    && ZygoteHooks.indefiniteThreadSuspensionOK();
                             final Runnable command =
                                     connection.processCommand(this, multipleForksOK);
 
