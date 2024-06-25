@@ -30,7 +30,6 @@ import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.app.ActivityManager.RunningTaskInfo;
-import android.app.AppCompatTaskInfo;
 import android.app.TaskInfo;
 import android.app.WindowConfiguration;
 import android.content.LocusId;
@@ -732,7 +731,7 @@ public class ShellTaskOrganizer extends TaskOrganizer implements
 
     @Override
     public void onCameraControlStateUpdated(
-            int taskId, @AppCompatTaskInfo.CameraCompatControlState int state) {
+            int taskId, @TaskInfo.CameraCompatControlState int state) {
         final TaskAppearedInfo info;
         synchronized (mLock) {
             info = mTasks.get(taskId);
@@ -786,7 +785,7 @@ public class ShellTaskOrganizer extends TaskOrganizer implements
         // The task is vanished or doesn't support compat UI, notify to remove compat UI
         // on this Task if there is any.
         if (taskListener == null || !taskListener.supportCompatUI()
-                || !taskInfo.appCompatTaskInfo.hasCompatUI() || !taskInfo.isVisible) {
+                || !taskInfo.hasCompatUI() || !taskInfo.isVisible) {
             mCompatUI.onCompatInfoChanged(taskInfo, null /* taskListener */);
             return;
         }

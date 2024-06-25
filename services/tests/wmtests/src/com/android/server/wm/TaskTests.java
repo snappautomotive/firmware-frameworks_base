@@ -583,21 +583,18 @@ public class TaskTests extends WindowTestsBase {
         doReturn(task).when(root).getOrganizedTask();
 
         // The button should be eligible to be displayed
-        assertTrue(task.getTaskInfo()
-                .appCompatTaskInfo.topActivityEligibleForUserAspectRatioButton);
+        assertTrue(task.getTaskInfo().topActivityEligibleForUserAspectRatioButton);
 
         // When shouldApplyUserMinAspectRatioOverride is disable the button is not enabled
         doReturn(false).when(root.mLetterboxUiController)
                 .shouldEnableUserAspectRatioSettings();
-        assertFalse(task.getTaskInfo()
-                .appCompatTaskInfo.topActivityEligibleForUserAspectRatioButton);
+        assertFalse(task.getTaskInfo().topActivityEligibleForUserAspectRatioButton);
         doReturn(true).when(root.mLetterboxUiController)
                 .shouldEnableUserAspectRatioSettings();
 
         // When in size compat mode the button is not enabled
         doReturn(true).when(root).inSizeCompatMode();
-        assertFalse(task.getTaskInfo()
-                .appCompatTaskInfo.topActivityEligibleForUserAspectRatioButton);
+        assertFalse(task.getTaskInfo().topActivityEligibleForUserAspectRatioButton);
         doReturn(false).when(root).inSizeCompatMode();
 
         // When the top activity is transparent, the button is not enabled

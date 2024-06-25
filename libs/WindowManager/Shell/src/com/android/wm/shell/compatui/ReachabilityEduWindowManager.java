@@ -21,7 +21,6 @@ import static android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
 import static android.window.TaskConstants.TASK_CHILD_LAYER_COMPAT_UI;
 
 import android.annotation.Nullable;
-import android.app.AppCompatTaskInfo;
 import android.app.TaskInfo;
 import android.content.Context;
 import android.graphics.Rect;
@@ -90,12 +89,11 @@ class ReachabilityEduWindowManager extends CompatUIWindowManagerAbstract {
             BiConsumer<TaskInfo, ShellTaskOrganizer.TaskListener> onDismissCallback,
             Function<Integer, Integer> disappearTimeSupplier) {
         super(context, taskInfo, syncQueue, taskListener, displayLayout);
-        final AppCompatTaskInfo appCompatTaskInfo = taskInfo.appCompatTaskInfo;
-        mIsActivityLetterboxed = appCompatTaskInfo.isLetterboxDoubleTapEnabled;
-        mLetterboxVerticalPosition = appCompatTaskInfo.topActivityLetterboxVerticalPosition;
-        mLetterboxHorizontalPosition = appCompatTaskInfo.topActivityLetterboxHorizontalPosition;
-        mTopActivityLetterboxWidth = appCompatTaskInfo.topActivityLetterboxWidth;
-        mTopActivityLetterboxHeight = appCompatTaskInfo.topActivityLetterboxHeight;
+        mIsActivityLetterboxed = taskInfo.isLetterboxDoubleTapEnabled;
+        mLetterboxVerticalPosition = taskInfo.topActivityLetterboxVerticalPosition;
+        mLetterboxHorizontalPosition = taskInfo.topActivityLetterboxHorizontalPosition;
+        mTopActivityLetterboxWidth = taskInfo.topActivityLetterboxWidth;
+        mTopActivityLetterboxHeight = taskInfo.topActivityLetterboxHeight;
         mCompatUIConfiguration = compatUIConfiguration;
         mMainExecutor = mainExecutor;
         mOnDismissCallback = onDismissCallback;
@@ -147,13 +145,12 @@ class ReachabilityEduWindowManager extends CompatUIWindowManagerAbstract {
         final int prevLetterboxHorizontalPosition = mLetterboxHorizontalPosition;
         final int prevTopActivityLetterboxWidth = mTopActivityLetterboxWidth;
         final int prevTopActivityLetterboxHeight = mTopActivityLetterboxHeight;
-        final AppCompatTaskInfo appCompatTaskInfo = taskInfo.appCompatTaskInfo;
-        mIsActivityLetterboxed = appCompatTaskInfo.isLetterboxDoubleTapEnabled;
-        mLetterboxVerticalPosition = appCompatTaskInfo.topActivityLetterboxVerticalPosition;
-        mLetterboxHorizontalPosition = appCompatTaskInfo.topActivityLetterboxHorizontalPosition;
-        mTopActivityLetterboxWidth = appCompatTaskInfo.topActivityLetterboxWidth;
-        mTopActivityLetterboxHeight = appCompatTaskInfo.topActivityLetterboxHeight;
-        mHasUserDoubleTapped = appCompatTaskInfo.isFromLetterboxDoubleTap;
+        mIsActivityLetterboxed = taskInfo.isLetterboxDoubleTapEnabled;
+        mLetterboxVerticalPosition = taskInfo.topActivityLetterboxVerticalPosition;
+        mLetterboxHorizontalPosition = taskInfo.topActivityLetterboxHorizontalPosition;
+        mTopActivityLetterboxWidth = taskInfo.topActivityLetterboxWidth;
+        mTopActivityLetterboxHeight = taskInfo.topActivityLetterboxHeight;
+        mHasUserDoubleTapped = taskInfo.isFromLetterboxDoubleTap;
 
         if (!super.updateCompatInfo(taskInfo, taskListener, canShow)) {
             return false;

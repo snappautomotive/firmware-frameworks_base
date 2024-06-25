@@ -229,9 +229,9 @@ class UserAspectRatioSettingsWindowManager extends CompatUIWindowManagerAbstract
 
     private boolean getHasUserAspectRatioSettingsButton(@NonNull TaskInfo taskInfo) {
         final Intent intent = taskInfo.baseIntent;
-        return taskInfo.appCompatTaskInfo.topActivityEligibleForUserAspectRatioButton
-                && (taskInfo.appCompatTaskInfo.topActivityBoundsLetterboxed
-                    || taskInfo.appCompatTaskInfo.isUserFullscreenOverrideEnabled)
+        return taskInfo.topActivityEligibleForUserAspectRatioButton
+                && (taskInfo.topActivityBoundsLetterboxed
+                    || taskInfo.isUserFullscreenOverrideEnabled)
                 && Intent.ACTION_MAIN.equals(intent.getAction())
                 && intent.hasCategory(Intent.CATEGORY_LAUNCHER)
                 && (!mUserAspectRatioButtonShownChecker.get() || isShowingButton());

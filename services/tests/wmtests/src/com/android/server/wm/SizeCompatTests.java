@@ -1118,7 +1118,7 @@ public class SizeCompatTests extends WindowTestsBase {
         verify(mTask).onSizeCompatActivityChanged();
         ActivityManager.RunningTaskInfo taskInfo = mTask.getTaskInfo();
 
-        assertTrue(taskInfo.appCompatTaskInfo.topActivityInSizeCompat);
+        assertTrue(taskInfo.topActivityInSizeCompat);
 
         // Make the activity resizable again by restarting it
         clearInvocations(mTask);
@@ -1133,7 +1133,7 @@ public class SizeCompatTests extends WindowTestsBase {
         verify(mTask).onSizeCompatActivityChanged();
         taskInfo = mTask.getTaskInfo();
 
-        assertFalse(taskInfo.appCompatTaskInfo.topActivityInSizeCompat);
+        assertFalse(taskInfo.topActivityInSizeCompat);
     }
 
     @Test
@@ -1151,7 +1151,7 @@ public class SizeCompatTests extends WindowTestsBase {
         verify(mTask).onSizeCompatActivityChanged();
         ActivityManager.RunningTaskInfo taskInfo = mTask.getTaskInfo();
 
-        assertTrue(taskInfo.appCompatTaskInfo.topActivityInSizeCompat);
+        assertTrue(taskInfo.topActivityInSizeCompat);
 
         // Create another Task to hold another size compat activity.
         clearInvocations(mTask);
@@ -1171,7 +1171,7 @@ public class SizeCompatTests extends WindowTestsBase {
         verify(mTask, never()).onSizeCompatActivityChanged();
         taskInfo = secondTask.getTaskInfo();
 
-        assertTrue(taskInfo.appCompatTaskInfo.topActivityInSizeCompat);
+        assertTrue(taskInfo.topActivityInSizeCompat);
     }
 
     @Test
@@ -4587,7 +4587,7 @@ public class SizeCompatTests extends WindowTestsBase {
         assertTrue(mActivity.inSizeCompatMode());
         assertEquals(mActivity.getState(), PAUSED);
         assertTrue(mActivity.isVisible());
-        assertTrue(mTask.getTaskInfo().appCompatTaskInfo.topActivityInSizeCompat);
+        assertTrue(mTask.getTaskInfo().topActivityInSizeCompat);
     }
 
     /**

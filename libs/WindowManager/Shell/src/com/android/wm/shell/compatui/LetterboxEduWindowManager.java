@@ -103,8 +103,7 @@ class LetterboxEduWindowManager extends CompatUIWindowManagerAbstract {
                 R.dimen.letterbox_education_dialog_margin);
         mDockStateReader = dockStateReader;
         mCompatUIConfiguration = compatUIConfiguration;
-        mEligibleForLetterboxEducation =
-                taskInfo.appCompatTaskInfo.topActivityEligibleForLetterboxEducation;
+        mEligibleForLetterboxEducation = taskInfo.topActivityEligibleForLetterboxEducation;
     }
 
     @Override
@@ -205,8 +204,7 @@ class LetterboxEduWindowManager extends CompatUIWindowManagerAbstract {
     @Override
     public boolean updateCompatInfo(TaskInfo taskInfo, ShellTaskOrganizer.TaskListener taskListener,
             boolean canShow) {
-        mEligibleForLetterboxEducation =
-                taskInfo.appCompatTaskInfo.topActivityEligibleForLetterboxEducation;
+        mEligibleForLetterboxEducation = taskInfo.topActivityEligibleForLetterboxEducation;
 
         return super.updateCompatInfo(taskInfo, taskListener, canShow);
     }
